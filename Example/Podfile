@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'CCDropDownMenu_Example' do
+    #pod 'CCDropDownMenu', :path => '../'
+    pod 'SDAutoLayout'
+
+  target 'CCDropDownMenu_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
