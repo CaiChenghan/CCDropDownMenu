@@ -22,9 +22,9 @@
 @property (nonatomic, assign) CGFloat menuHeight;
 @property (nonatomic, assign) NSInteger numberOfMenu;
 
-@property (nonatomic, assign) struct CCImages buttonImages;
-@property (nonatomic, assign) struct CCColors buttonLabColors;
-@property (nonatomic, assign) struct CCFonts buttonLabFonts;
+@property (nonatomic, strong) CCImages *buttonImages;
+@property (nonatomic, strong) CCColors *buttonLabColors;
+@property (nonatomic, strong) CCFonts *buttonLabFonts;
 
 @property (nonatomic, strong) UIView *bottomLine;
 
@@ -86,24 +86,21 @@
 }
 
 - (void)setMenuImage:(UIImage *)normalImage selected:(UIImage *)selectedImage disabled:(UIImage *)disabledImage {
-    struct CCImages imgages = {normalImage, selectedImage, disabledImage};
-    self.buttonImages = imgages;
+    self.buttonImages = [[CCImages alloc]initWithNormalImage:normalImage selectedImage:selectedImage disabledImage:disabledImage];
     for (CCDropDownMenuButton *btn in self.dropDownButtons) {
         btn.images = self.buttonImages;
     }
 }
 
 - (void)setMenuTitleColor:(UIColor *)normalColor selected:(UIColor *)selectedColor disabled:(UIColor *)disabledColor {
-    struct CCColors colors = {normalColor, selectedColor, disabledColor};
-    self.buttonLabColors = colors;
+    self.buttonLabColors = [[CCColors alloc]initWithNormalColor:normalColor selectedColor:selectedColor disabledColor:disabledColor];
     for (CCDropDownMenuButton *btn in self.dropDownButtons) {
         btn.colors = self.buttonLabColors;
     }
 }
 
 - (void)setMenuTitleFont:(UIFont *)normalFont selected:(UIFont *)selectedFont disabled:(UIFont *)disabledFont {
-    struct CCFonts fonts = {normalFont, selectedFont, disabledFont};
-    self.buttonLabFonts = fonts;
+    self.buttonLabFonts = [[CCFonts alloc]initWithNormalFont:normalFont selectedFont:selectedFont disabledFont:disabledFont];
     for (CCDropDownMenuButton *btn in self.dropDownButtons) {
         btn.fonts = self.buttonLabFonts;
     }

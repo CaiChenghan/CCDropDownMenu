@@ -48,7 +48,6 @@
 		1BF271A521538C7600FA0809 /* ListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListView.m; sourceTree = "<group>"; };
 		1BF271A721538C8900FA0809 /* BtnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BtnView.h; sourceTree = "<group>"; };
 		1BF271A821538C8900FA0809 /* BtnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BtnView.m; sourceTree = "<group>"; };
-		1BF271D12154C34900FA0809 /* CCDropDownMenuStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDropDownMenuStatus.h; sourceTree = "<group>"; };
 		1BF271D22154C34900FA0809 /* CCDropDownMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDropDownMenuButton.h; sourceTree = "<group>"; };
 		1BF271D32154C34900FA0809 /* CCDropDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDropDownView.h; sourceTree = "<group>"; };
 		1BF271D42154C34900FA0809 /* CCDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCDropDownMenu.m; sourceTree = "<group>"; };
@@ -130,7 +129,6 @@
 				1BF271D42154C34900FA0809 /* CCDropDownMenu.m */,
 				1BF271D22154C34900FA0809 /* CCDropDownMenuButton.h */,
 				1BF271D72154C34900FA0809 /* CCDropDownMenuButton.m */,
-				1BF271D12154C34900FA0809 /* CCDropDownMenuStatus.h */,
 				1BF271D32154C34900FA0809 /* CCDropDownView.h */,
 				1BF271D52154C34900FA0809 /* CCDropDownView.m */,
 				1BF271DF2154C6B600FA0809 /* CCDropDownViewDelegate.h */,

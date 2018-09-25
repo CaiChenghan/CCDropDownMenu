@@ -10,20 +10,20 @@
 
 @implementation CCDropDownMenuButton
 
-- (void)setImages:(struct CCImages)images {
+- (void)setImages:(CCImages *)images {
     _images = images;
     [self setImage:_images.normal forState:UIControlStateNormal];
     [self setImage:_images.normal forState:UIControlStateHighlighted];
     [self resetEdgeInsets];
 }
 
-- (void)setColors:(struct CCColors)colors {
+- (void)setColors:(CCColors *)colors {
     _colors = colors;
     [self setTitleColor:_colors.normal forState:UIControlStateNormal];
     [self resetEdgeInsets];
 }
 
-- (void)setFonts:(struct CCFonts)fonts {
+- (void)setFonts:(CCFonts *)fonts {
     _fonts = fonts;
     self.titleLabel.font = _fonts.normal;
     [self resetEdgeInsets];
@@ -49,5 +49,50 @@
     // Drawing code
 }
 */
+
+@end
+
+
+@implementation CCImages
+
+- (instancetype)initWithNormalImage:(UIImage *)normal selectedImage:(UIImage *)selected disabledImage:(UIImage *)disabled {
+    self = [super init];
+    if (self) {
+        self.normal = normal;
+        self.selected = selected;
+        self.disabled = disabled;
+    }
+    return self;
+}
+
+@end
+
+
+@implementation CCColors
+
+- (instancetype)initWithNormalColor:(UIColor *)normal selectedColor:(UIColor *)selected disabledColor:(UIColor *)disabled {
+    self = [super init];
+    if (self) {
+        self.normal = normal;
+        self.selected = selected;
+        self.disabled = disabled;
+    }
+    return self;
+}
+
+@end
+
+
+@implementation CCFonts
+
+- (instancetype)initWithNormalFont:(UIFont *)normal selectedFont:(UIFont *)selected disabledFont:(UIFont *)disabled {
+    self = [super init];
+    if (self) {
+        self.normal = normal;
+        self.selected = selected;
+        self.disabled = disabled;
+    }
+    return self;
+}
 
 @end

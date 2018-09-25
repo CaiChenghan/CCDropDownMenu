@@ -7,15 +7,47 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CCDropDownMenuStatus.h"
+@class CCImages;
+@class CCColors;
+@class CCFonts;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CCDropDownMenuButton : UIButton
 
-@property (nonatomic, assign) struct CCImages images;
-@property (nonatomic, assign) struct CCColors colors;
-@property (nonatomic, assign) struct CCFonts fonts;
+@property (nonatomic, strong) CCImages *images;
+@property (nonatomic, strong) CCColors *colors;
+@property (nonatomic, strong) CCFonts *fonts;
+
+@end
+
+@interface CCImages : NSObject
+
+@property (nonatomic, strong) UIImage *normal;
+@property (nonatomic, strong) UIImage *selected;
+@property (nonatomic, strong) UIImage *disabled;
+
+- (instancetype)initWithNormalImage:(UIImage *)normal selectedImage:(UIImage *)selected disabledImage:(UIImage *)disabled;
+
+@end
+
+@interface CCColors : NSObject
+
+@property (nonatomic, strong) UIColor *normal;
+@property (nonatomic, strong) UIColor *selected;
+@property (nonatomic, strong) UIColor *disabled;
+
+- (instancetype)initWithNormalColor:(UIColor *)normal selectedColor:(UIColor *)selected disabledColor:(UIColor *)disabled;
+
+@end
+
+@interface CCFonts : NSObject
+
+@property (nonatomic, strong) UIFont *normal;
+@property (nonatomic, strong) UIFont *selected;
+@property (nonatomic, strong) UIFont *disabled;
+
+- (instancetype)initWithNormalFont:(UIFont *)normal selectedFont:(UIFont *)selected disabledFont:(UIFont *)disabled;
 
 @end
 
