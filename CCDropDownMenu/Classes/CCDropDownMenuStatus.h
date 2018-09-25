@@ -11,21 +11,21 @@
 #import <UIKit/UIKit.h>
 
 struct CCImages {
-    UIImage *normal;
-    UIImage *selected;
-    UIImage *disabled;
+    __unsafe_unretained UIImage *normal;
+    __unsafe_unretained UIImage *selected;
+    __unsafe_unretained UIImage *disabled;
 };
 
 struct CCColors {
-    UIColor *normal;
-    UIColor *selected;
-    UIColor *disabled;
+    __unsafe_unretained UIColor *normal;
+    __unsafe_unretained UIColor *selected;
+    __unsafe_unretained UIColor *disabled;
 };
 
 struct CCFonts {
-    UIFont *normal;
-    UIFont *selected;
-    UIFont *disabled;
+    __unsafe_unretained UIFont *normal;
+    __unsafe_unretained UIFont *selected;
+    __unsafe_unretained UIFont *disabled;
 };
 
 #endif /* CCDropDownMenuStatus_h */
