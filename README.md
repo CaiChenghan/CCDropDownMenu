@@ -12,7 +12,7 @@ CCDropDownMenu is available through [CocoaPods](https://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CCDropDownMenu', :git => 'https://github.com/CaiChenghan/CCDropDownMenu.git', :tag => '1.0.1'
+pod 'CCDropDownMenu', :git => 'https://github.com/CaiChenghan/CCDropDownMenu.git', :tag => '1.1.0'
 ```
 
 ## Author
