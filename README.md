@@ -16,7 +16,7 @@ platform :ios, '9.0'
 inhibit_all_warnings!
 source ‘https://github.com/CaiChenghan/CCRepo.git’
 source ‘https://github.com/CocoaPods/Specs.git’
-target 'XXX' do
+target 'MyApp' do
   pod 'CCDropDownMenu', '~> 1.1.0'
 end
 ```
