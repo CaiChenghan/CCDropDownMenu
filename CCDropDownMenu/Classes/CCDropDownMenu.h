@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CCDropDownView.h"
+@protocol CCDropDownMenuDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CCDropDownMenu : UIView
+
+@property (nonatomic, weak) id<CCDropDownMenuDelegate>delegate;
+
 // Blur effect view
 @property (nonatomic, strong) UIView *blurEffectView;
 
@@ -54,6 +58,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)hideMenu;
 - (void)changeMenu:(NSString *)title atIndex:(NSInteger)index;
 - (void)changeMenu:(NSString *)title status:(CCDropDownMenuStatus)status atIndex:(NSInteger)index;
+
+@end
+
+
+@protocol CCDropDownMenuDelegate <NSObject>
+
+@optional
+
+- (void)dropDownViewWillOpen:(CCDropDownMenu *)menu;
+- (void)dropDownViewDidOpened:(CCDropDownMenu *)menu;
+- (void)dropDownViewWillClose:(CCDropDownMenu *)menu;
+- (void)dropDownViewDidClosed:(CCDropDownMenu *)menu;
 
 @end
 

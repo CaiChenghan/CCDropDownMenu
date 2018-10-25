@@ -155,6 +155,9 @@
 
 - (void)showMenu:(CCDropDownMenuButton *)dropDwonButton dropDownView:(CCDropDownView *)dropDownView complete:(void(^)(void))complete {
     dropDownView.hidden = NO;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dropDownViewWillOpen:)]) {
+        [self.delegate dropDownViewWillOpen:self];
+    }
     [self addSubview:dropDownView];
     [self sendSubviewToBack:dropDownView];
     
@@ -191,10 +194,16 @@
                          if (complete) {
                              complete();
                          }
+                         if (self.delegate && [self.delegate respondsToSelector:@selector(dropDownViewDidOpened:)]) {
+                             [self.delegate dropDownViewDidOpened:self];
+                         }
                      }];
 }
 
 - (void)hideMenu:(CCDropDownMenuButton *)dropDwonButton dropDownView:(CCDropDownView *)dropDownView complete:(void(^)(void))complete  {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dropDownViewWillClose:)]) {
+        [self.delegate dropDownViewWillClose:self];
+    }
     if ([dropDownView isKindOfClass:[CCDropDownView class]]) {
         [dropDownView dropDownViewClosed];
     }
@@ -228,6 +237,9 @@
                          dropDownView.hidden = YES;
                          if (complete) {
                              complete();
+                         }
+                         if (self.delegate && [self.delegate respondsToSelector:@selector(dropDownViewDidClosed:)]) {
+                             [self.delegate dropDownViewDidClosed:self];
                          }
                      }];
 }
