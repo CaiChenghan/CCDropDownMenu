@@ -246,31 +246,62 @@
 
 - (void)setMenuStatus:(CCDropDownMenuStatus)status atIndex:(NSInteger)index {
     [self checkIndex:index];
-    switch (status) {
-            case CCDropDownMenuStatusNormal:
-            if ([self.alwaysOnIndex containsObject:@(index)]) {
-                [self.alwaysOnIndex removeObject:@(index)];
-            }
-            [self.dropDownButtons[index] setTitleColor:self.buttonLabColors.normal forState:UIControlStateNormal];
-            self.dropDownButtons[index].titleLabel.font = self.buttonLabFonts.normal;
-            break;
-            
-            case CCDropDownMenuStatusSelected:
-            if (![self.alwaysOnIndex containsObject:@(index)]) {
-                [self.alwaysOnIndex addObject:@(index)];
-            }
-            [self.dropDownButtons[index] setTitleColor:self.buttonLabColors.selected forState:UIControlStateNormal];
-            self.dropDownButtons[index].titleLabel.font = self.buttonLabFonts.selected;
-            break;
-            
-            case CCDropDownMenuStatusAbled:
-            self.dropDownButtons[index].userInteractionEnabled = YES;
-            break;
-            
-            case CCDropDownMenuStatusDisabled:
-            self.dropDownButtons[index].userInteractionEnabled = NO;
-            break;
+    if (status == CCDropDownMenuStatusNormal) {
+        [self setMenuNormal:index];
     }
+    if (status == CCDropDownMenuStatusSelected) {
+        [self setMenuSelected:index];
+    }
+    if (status == CCDropDownMenuStatusAbled) {
+        [self setMenuAbled:index];
+    }
+    if (status == CCDropDownMenuStatusDisabled) {
+        [self setMenuDisabled:index];
+    }
+    if (status == (CCDropDownMenuStatusNormal | CCDropDownMenuStatusAbled)) {
+        [self setMenuNormal:index];
+        [self setMenuAbled:index];
+    }
+    if (status == (CCDropDownMenuStatusNormal | CCDropDownMenuStatusDisabled)) {
+        [self setMenuNormal:index];
+        [self setMenuDisabled:index];
+    }
+    if (status == (CCDropDownMenuStatusSelected | CCDropDownMenuStatusAbled)) {
+        [self setMenuSelected:index];
+        [self setMenuAbled:index];
+    }
+    if (status == (CCDropDownMenuStatusSelected | CCDropDownMenuStatusDisabled)) {
+        [self setMenuSelected:index];
+        [self setMenuDisabled:index];
+    }
+}
+
+- (void)setMenuNormal:(NSInteger)index {
+    if ([self.alwaysOnIndex containsObject:@(index)]) {
+        [self.alwaysOnIndex removeObject:@(index)];
+    }
+    [self.dropDownButtons[index] setTitleColor:self.buttonLabColors.normal forState:UIControlStateNormal];
+    self.dropDownButtons[index].titleLabel.font = self.buttonLabFonts.normal;
+    [self.dropDownButtons[index] setImage:self.buttonImages.normal forState:UIControlStateNormal];
+    [self.dropDownButtons[index] setImage:self.buttonImages.normal forState:UIControlStateHighlighted];
+}
+
+- (void)setMenuSelected:(NSInteger)index {
+    if (![self.alwaysOnIndex containsObject:@(index)]) {
+        [self.alwaysOnIndex addObject:@(index)];
+    }
+    [self.dropDownButtons[index] setTitleColor:self.buttonLabColors.selected forState:UIControlStateNormal];
+    self.dropDownButtons[index].titleLabel.font = self.buttonLabFonts.selected;
+    [self.dropDownButtons[index] setImage:self.buttonImages.selected forState:UIControlStateNormal];
+    [self.dropDownButtons[index] setImage:self.buttonImages.selected forState:UIControlStateHighlighted];
+}
+
+- (void)setMenuAbled:(NSInteger)index {
+    self.dropDownButtons[index].userInteractionEnabled = YES;
+}
+
+- (void)setMenuDisabled:(NSInteger)index {
+    self.dropDownButtons[index].userInteractionEnabled = NO;
 }
 
 #pragma mark - CCDropDownViewDelegate
