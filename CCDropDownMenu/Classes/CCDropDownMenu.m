@@ -48,6 +48,7 @@
         _hideMenuSpringWithDamping = 0.8;
         _opened = NO;
         _openedIndex = 0;
+        _itemSpacing = 0;
         _alwaysOnIndex = [NSMutableArray array];
         self.numberOfMenu = dropDownViews.count;
         self.dropDownViews = dropDownViews;
@@ -59,12 +60,12 @@
 }
 
 - (void)initialViews {
-    CGFloat itemWidth = self.bounds.size.width / self.numberOfMenu;
+    CGFloat itemWidth = (self.bounds.size.width - (self.numberOfMenu-1)*self.itemSpacing) / self.numberOfMenu;
     NSMutableArray<CCDropDownMenuButton *> *btns = [NSMutableArray array];
     for (NSInteger i=0; i<self.numberOfMenu; i++) {
         CCDropDownMenuButton *btn = [CCDropDownMenuButton buttonWithType:UIButtonTypeCustom];
         btn.backgroundColor = [UIColor whiteColor];
-        btn.frame = CGRectMake(itemWidth*i, 0, itemWidth, self.menuHeight);
+        btn.frame = CGRectMake((itemWidth+self.itemSpacing)*i, 0, itemWidth, self.menuHeight);
         btn.tag = i;
         [btn setTitle:self.dropDownTitles[i] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(menuClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -130,7 +131,7 @@
     [self checkIndex:index];
     if (self.openedIndex != index && self.opened) {
         __weak typeof(self) weakSelf = self;
-        [self hideMenu:self.dropDownButtons[self.openedIndex] dropDownView:self.dropDownViews[self.openedIndex] complete:^{
+        [self hideMenu:self.dropDownButtons[self.openedIndex] dropDownView:self.dropDownViews[self.openedIndex] animation:YES complete:^{
             [weakSelf showMenu:weakSelf.dropDownButtons[index] dropDownView:self.dropDownViews[index] complete:nil];
         }];
         self.openedIndex = index;
@@ -140,7 +141,7 @@
     if (!self.opened) {
         [self showMenu:self.dropDownButtons[index] dropDownView:self.dropDownViews[index] complete:nil];
     } else {
-        [self hideMenu:self.dropDownButtons[index] dropDownView:self.dropDownViews[index] complete:nil];
+        [self hideMenu:self.dropDownButtons[index] dropDownView:self.dropDownViews[index] animation:YES complete:nil];
     }
     self.opened = !self.opened;
 }
@@ -200,14 +201,14 @@
                      }];
 }
 
-- (void)hideMenu:(CCDropDownMenuButton *)dropDwonButton dropDownView:(CCDropDownView *)dropDownView complete:(void(^)(void))complete  {
+- (void)hideMenu:(CCDropDownMenuButton *)dropDwonButton dropDownView:(CCDropDownView *)dropDownView animation:(BOOL)animation complete:(void(^)(void))complete  {
     if (self.delegate && [self.delegate respondsToSelector:@selector(dropDownViewWillClose:)]) {
         [self.delegate dropDownViewWillClose:self];
     }
     if ([dropDownView isKindOfClass:[CCDropDownView class]]) {
         [dropDownView dropDownViewClosed];
     }
-    [UIView animateWithDuration:self.hideMenuDuration
+    [UIView animateWithDuration:animation ? self.hideMenuDuration : 0
                           delay:0
          usingSpringWithDamping:self.hideMenuSpringWithDamping
           initialSpringVelocity:self.hideMenuSpringVelocity
@@ -304,13 +305,17 @@
     self.dropDownButtons[index].userInteractionEnabled = NO;
 }
 
+- (void)hideMenu:(BOOL)animation {
+    if (self.opened) {
+        [self hideMenu:self.dropDownButtons[self.openedIndex] dropDownView:self.dropDownViews[self.openedIndex] animation:animation complete:nil];
+        self.opened = !self.opened;
+    }
+}
+
 #pragma mark - CCDropDownViewDelegate
 
 - (void)hideMenu {
-    if (self.opened) {
-        [self hideMenu:self.dropDownButtons[self.openedIndex] dropDownView:self.dropDownViews[self.openedIndex] complete:nil];
-        self.opened = !self.opened;
-    }
+    [self hideMenu:YES];
 }
 
 - (void)changeMenu:(NSString *)title atIndex:(NSInteger)index {

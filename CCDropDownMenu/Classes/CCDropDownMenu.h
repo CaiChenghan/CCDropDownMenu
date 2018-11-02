@@ -46,6 +46,9 @@ NS_ASSUME_NONNULL_BEGIN
 // Hide menu spring damping Default value: *0.8*
 @property (nonatomic, assign) CGFloat hideMenuSpringWithDamping;
 
+// spacing of menu item Default value: *0*
+@property (nonatomic, assign) CGFloat itemSpacing;
+
 // Bottom 0.5px line
 @property (nonatomic, strong, readonly) UIView *bottomLine;
 
@@ -56,6 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setMenuTitleFont:(UIFont *)normalFont selected:(UIFont *)selectedFont disabled:(UIFont *)disabledFont;
 
 - (void)hideMenu;
+- (void)hideMenu:(BOOL)animation;
 - (void)changeMenu:(NSString *)title atIndex:(NSInteger)index;
 - (void)changeMenu:(NSString *)title status:(CCDropDownMenuStatus)status atIndex:(NSInteger)index;
 
