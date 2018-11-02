@@ -26,6 +26,7 @@
 @property (nonatomic, strong) CCColors *buttonLabColors;
 @property (nonatomic, strong) CCFonts *buttonLabFonts;
 
+@property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIView *bottomLine;
 
 @end
@@ -53,6 +54,7 @@
         self.numberOfMenu = dropDownViews.count;
         self.dropDownViews = dropDownViews;
         self.dropDownTitles = dropDownTitles;
+        self.dropDownButtons = [NSMutableArray array];
         self.menuHeight = self.frame.size.height;
         [self initialViews];
     }
@@ -60,6 +62,9 @@
 }
 
 - (void)initialViews {
+    self.bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.menuHeight)];
+    self.bgView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.bgView];
     CGFloat itemWidth = (self.bounds.size.width - (self.numberOfMenu-1)*self.itemSpacing) / self.numberOfMenu;
     NSMutableArray<CCDropDownMenuButton *> *btns = [NSMutableArray array];
     for (NSInteger i=0; i<self.numberOfMenu; i++) {
@@ -84,6 +89,18 @@
     
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     self.blurEffectView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
+}
+
+- (void)setItemSpacing:(CGFloat)itemSpacing {
+    _itemSpacing = MAX(itemSpacing, 0);
+    [self resetMenuItemFrame];
+}
+
+- (void)resetMenuItemFrame {
+    CGFloat itemWidth = (self.bounds.size.width - (self.numberOfMenu-1)*self.itemSpacing) / self.numberOfMenu;
+    for (NSInteger i=0; i<self.dropDownButtons.count; i++) {
+        self.dropDownButtons[i].frame = CGRectMake((itemWidth+self.itemSpacing)*i, 0, itemWidth, self.menuHeight);
+    }
 }
 
 - (void)setMenuImage:(UIImage *)normalImage selected:(UIImage *)selectedImage disabled:(UIImage *)disabledImage {

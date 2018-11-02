@@ -37,7 +37,7 @@
         [_menu setMenuTitleColor:[UIColor blackColor] selected:[UIColor colorWithRed:176.0/255.0 green:148.0/255.0 blue:109.0/255.0 alpha:1] disabled:[UIColor redColor]];
         [_menu setMenuTitleFont:[UIFont systemFontOfSize:14] selected:[UIFont systemFontOfSize:14] disabled:[UIFont systemFontOfSize:14]];
         [_menu setMenuImage:[UIImage imageNamed:@"mall_button_down"] selected:[UIImage imageNamed:@"mall_button_down_golden"] disabled:[UIImage imageNamed:@"mall_button_down"]];
-        _menu.itemSpacing = 20.0;
+        _menu.itemSpacing = 100.0;
     }
     return _menu;
 }
