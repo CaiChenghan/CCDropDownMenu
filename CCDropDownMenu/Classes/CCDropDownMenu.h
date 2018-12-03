@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithFrame:(CGRect)frame dropDownViews:(NSArray<CCDropDownView *> *)dropDownViews dropDownTitles:(NSArray<NSString *> *)dropDownTitles;
 
-- (void)setMenuImage:(UIImage *)normalImage selected:(UIImage *)selectedImage disabled:(UIImage *)disabledImage;
+- (void)setMenuImage:(nullable UIImage *)normalImage selected:(nullable UIImage *)selectedImage disabled:(nullable UIImage *)disabledImage;
 - (void)setMenuTitleColor:(UIColor *)normalColor selected:(UIColor *)selectedColor disabled:(UIColor *)disabledColor;
 - (void)setMenuTitleFont:(UIFont *)normalFont selected:(UIFont *)selectedFont disabled:(UIFont *)disabledFont;
 

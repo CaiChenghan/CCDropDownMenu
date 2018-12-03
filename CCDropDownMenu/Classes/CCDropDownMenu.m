@@ -320,6 +320,8 @@
 
 - (void)setMenuDisabled:(NSInteger)index {
     self.dropDownButtons[index].userInteractionEnabled = NO;
+    [self.dropDownButtons[index] setImage:self.buttonImages.disabled forState:UIControlStateNormal];
+    [self.dropDownButtons[index] setImage:self.buttonImages.disabled forState:UIControlStateHighlighted];
 }
 
 - (void)hideMenu:(BOOL)animation {
