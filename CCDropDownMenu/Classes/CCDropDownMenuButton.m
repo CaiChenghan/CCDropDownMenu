@@ -31,15 +31,33 @@
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {
     [super setTitle:title forState:state];
+    self.titleLabel.text = title;
+    [self resetEdgeInsets];
+}
+
+- (void)setImage:(UIImage *)image forState:(UIControlState)state {
+    [super setImage:image forState:state];
+    self.imageView.image = image;
     [self resetEdgeInsets];
 }
 
 - (void)resetEdgeInsets {
-    CGSize imageSize = self.imageView.bounds.size;
-    CGSize titleSize = self.titleLabel.bounds.size;
-    CGFloat offset = 2.5;
-    self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width-offset, 0, imageSize.width+offset);
-    self.imageEdgeInsets = UIEdgeInsetsMake(0, titleSize.width+offset, 0, -titleSize.width-offset);
+    CGSize imageSize = CGSizeZero;
+    if (self.imageView.image) {
+        imageSize = self.imageView.bounds.size;
+    }
+    CGSize titleSize = CGSizeZero;
+    if (self.titleLabel.text) {
+        titleSize = self.titleLabel.bounds.size;
+    }
+    if (imageSize.width > 0) {
+        CGFloat offset = 2.5;
+        self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width-offset, 0, imageSize.width+offset);
+        self.imageEdgeInsets = UIEdgeInsetsMake(0, titleSize.width+offset, 0, -titleSize.width-offset);
+    } else {
+        self.titleEdgeInsets = UIEdgeInsetsZero;
+        self.imageEdgeInsets = UIEdgeInsetsZero;
+    }
 }
 
 /*
