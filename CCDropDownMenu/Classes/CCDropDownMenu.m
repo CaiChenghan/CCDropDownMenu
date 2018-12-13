@@ -79,7 +79,8 @@
         
         // Setup Views
         CCDropDownView *dropDownView = self.dropDownViews[i];
-        dropDownView.frame = CGRectMake(0, self.menuHeight - dropDownView.bounds.size.height, dropDownView.bounds.size.width, dropDownView.bounds.size.height);
+        dropDownView.frame = CGRectMake(0, self.menuHeight, dropDownView.bounds.size.width, dropDownView.bounds.size.height);
+        dropDownView.hidden = YES;
     }
     self.dropDownButtons = btns;
     
