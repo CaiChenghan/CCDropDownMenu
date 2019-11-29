@@ -11,7 +11,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 CCDropDownMenu is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-```rubypo
+```ruby
 platform :ios, '9.0'
 inhibit_all_warnings!
 source ‘https://github.com/CaiChenghan/CCRepo.git’
